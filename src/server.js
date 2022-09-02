@@ -20,9 +20,6 @@ const server = (port, routers) => {
       process.exit(0);
     });
   });
-  process.on("SIGKILL", () => {
-    process.exit(0);
-  });
 };
 
 export default server;
