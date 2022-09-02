@@ -1,12 +1,8 @@
-const express = require('express');
+import server from './server';
+import quizzesRouter from './routes/quizzes';
 
-const app = express();
-const port = 3000;
+const routers = [
+    quizzesRouter
+]
 
-app.get('/', (req, res) => {
-    return res.send('Hello world');
-});
-
-app.listen(port, () => {
-    console.log(`App listening at ${port}`);
-})
+server(3000, routers);

@@ -35,9 +35,32 @@ eval("\n\n/**\n * Expose `arrayFlatten`.\n */\nmodule.exports = arrayFlatten\n\n
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("var express = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n\nvar app = express();\nvar port = 3000;\napp.get('/', function (req, res) {\n  return res.send('Hello world');\n});\napp.listen(port, function () {\n  console.log(\"App listening at \".concat(port));\n});\n\n//# sourceURL=webpack://nagp-quiz-api/./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./server */ \"./src/server.js\");\n/* harmony import */ var _routes_quizes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes/quizes */ \"./src/routes/quizes.js\");\n\n\nvar routers = [_routes_quizes__WEBPACK_IMPORTED_MODULE_1__[\"default\"]];\n(0,_server__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(3000, routers);\n\n//# sourceURL=webpack://nagp-quiz-api/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/routes/quizes.js":
+/*!******************************!*\
+  !*** ./src/routes/quizes.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nvar router = express__WEBPACK_IMPORTED_MODULE_0___default().Router();\nrouter.get('/', function (req, res) {\n  res.json([{\n    quizText: 'What is the name of the president of US?'\n  }]);\n});\nvar quizRouter = {\n  name: 'quizes',\n  router: router\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (quizRouter);\n\n//# sourceURL=webpack://nagp-quiz-api/./src/routes/quizes.js?");
+
+/***/ }),
+
+/***/ "./src/server.js":
+/*!***********************!*\
+  !*** ./src/server.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar express = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n\nvar server = function server(port, routers) {\n  var app = express();\n  routers.forEach(function (_ref) {\n    var name = _ref.name,\n        router = _ref.router;\n    console.log('name: ', name);\n    app.use(\"/\".concat(name), router);\n  });\n  app.listen(port, function () {\n    console.log(\"App listening at \".concat(port));\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (server);\n\n//# sourceURL=webpack://nagp-quiz-api/./src/server.js?");
 
 /***/ }),
 
@@ -1437,9 +1460,44 @@ eval("module.exports = JSON.parse('{\"100\":\"Continue\",\"101\":\"Switching Pro
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
