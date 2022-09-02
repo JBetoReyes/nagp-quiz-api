@@ -15,7 +15,7 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
-RUN npm build
+RUN npm run build
 
 EXPOSE 8080
 
