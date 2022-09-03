@@ -25,7 +25,6 @@ export const connectToServer = async () => {
         return;
     }
     dbo = dbConnection.db('quiz');
-    const questions = await dbConnection.db('quiz').collection('questions').find().toArray();
     console.log('Successfully connected to db');
 }
 
