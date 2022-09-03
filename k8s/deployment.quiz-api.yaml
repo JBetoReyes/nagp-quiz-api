@@ -22,11 +22,23 @@ spec:
     spec:
       containers:
       - name: quiz-api
-        image: jbetoreyes/quiz-api
+        image: jbetoreyes/quiz-api:0.1
         imagePullPolicy: Always
         env:
         - name: APP_PORT
           value: '8080'
+        - name: DB_HOST
+          value: mongo
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongo-creds
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-creds
+              key: password
         ports:
         - name: http
           containerPort: 8080
