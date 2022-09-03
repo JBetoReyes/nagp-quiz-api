@@ -1,7 +1,11 @@
-const express = require("express");
+import express from 'express';
+import cors from 'cors';
 
 const server = (port, routers) => {
   const app = express();
+
+  app.use(cors())
+
   routers.forEach(({ name, router }) => {
     app.use(`/${name}`, router);
   });
