@@ -6,6 +6,7 @@ metadata:
     app: mongo
     rel: stable
   name: mongo
+  namespace: quiz-app
 spec:
   replicas: 1
   selector:
