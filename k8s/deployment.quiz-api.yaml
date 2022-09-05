@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: quiz-api
+  namespace: quiz-app
   labels:
     app: quiz-api
     rel: stable
