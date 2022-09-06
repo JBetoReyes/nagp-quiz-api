@@ -8,6 +8,7 @@ pipeline {
           labels:
             some-label: some-label-value
         spec:
+          serviceAccountName: jenkins-agent
           containers:
           - name: maven
             image: maven:alpine
