@@ -14,8 +14,8 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: busybox
-            image: busybox
+          - name: bitnami
+            image: bitnami/kubectl
             command:
             - cat
             tty: true
@@ -29,7 +29,7 @@ pipeline {
           sh 'mvn -version'
         }
         container('busybox') {
-          sh '/bin/busybox'
+          sh 'kubectl get pods'
         }
       }
     }
