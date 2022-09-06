@@ -28,8 +28,10 @@ pipeline {
         container('maven') {
           sh 'mvn -version'
         }
-        container('busybox') {
-          sh 'kubectl get pods'
+        container('bitnami') {
+            withKubeConfig([namespace: "jenkins"]) {
+                sh 'kubectl get pods'
+            }
         }
       }
     }
