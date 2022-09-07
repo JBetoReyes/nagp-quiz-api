@@ -19,12 +19,9 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params
     let questions
     try {
-        questions = await dbo
-            .collection('questions')
-            .find({
-                _id: id,
-            })
-            .toArray()
+        questions = await dbo.collection('questions').findOne({
+            _id: +id,
+        })
     } catch (err) {
         console.log(err)
     }
@@ -34,18 +31,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const dbo = await getDbConnection()
     const { questions } = req.body
-    let insertedQuestions
     try {
-        insertedQuestions = await dbo
-            .collection('questions')
-            .insertMay(questions)
+        await dbo.collection('questions').insertMany(questions)
     } catch (err) {
         console.log(err)
-    }
-    let ids = insertedQuestions.insertedIds
-    console.log(`${insertedQuestions.insertedCount} documents were inserted.`)
-    for (let id of Object.values(ids)) {
-        console.log(`Inserted a document with id ${id}`)
     }
     res.status(200).json({ message: 'questions inserted successfully' })
 })
