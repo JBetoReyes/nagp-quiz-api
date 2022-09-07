@@ -1,4 +1,7 @@
 pipeline {
+  environment {
+    dockerImage = ''
+  }
   agent {
     kubernetes {
       yamlFile 'k8s/pod.jenkins-agent.yaml'
@@ -61,7 +64,14 @@ pipeline {
     stage('Docker Build') {
       steps {
         container('dind') {
-          sh 'docker build -t jbetoreyes/quiz-api:latest .'
+          // docker.withRegistry('https://registry.example.com', 'credentials-id') {
+              script {
+                dockerImage = docker.build("jbetoreyes/quiz-api:latest")
+              }
+              /* Push the container to the custom Registry */
+              // customImage.push()
+          // }
+          // sh 'docker build -t jbetoreyes/quiz-api:latest .'
         }
       }
     }
