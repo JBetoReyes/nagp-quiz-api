@@ -4,7 +4,7 @@ import cors from 'cors';
 const server = (routers) => {
   const app = express();
 
-  app.use(cors())
+  app.use(cors());
 
   routers.forEach(({ name, router }) => {
     app.use(`/${name}`, router);
