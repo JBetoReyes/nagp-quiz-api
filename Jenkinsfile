@@ -35,6 +35,7 @@ pipeline {
         }
         container('bitnami') {
             echo 'hello'
+            echo '$(kubectl get pods)'
             shell 'echo "helloooo"'
             shell """
             kubectl config set-context prod
