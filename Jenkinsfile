@@ -1,6 +1,7 @@
 pipeline {
   environment {
     dockerImage = ''
+    HASH=$(echo $timestamp)
   }
   agent {
     kubernetes {
@@ -74,7 +75,7 @@ pipeline {
       steps {
         container('dind') {
           script {
-            docker.withRegistry('docker-hub-integration') {
+            docker.withRegistry('', 'docker-hub-integration') {
               dockerImage.push()
             }
           }
