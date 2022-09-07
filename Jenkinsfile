@@ -22,8 +22,8 @@ pipeline {
             command:
             - cat
             tty: true
-          securityContext:                                                                                                         
-            runAsUser: 1000
+            securityContext:                                                                                                         
+              runAsUser: 1000
           - name: dind
             imagePullPolicy: Always
             image: docker:dind
