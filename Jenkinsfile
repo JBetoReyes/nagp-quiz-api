@@ -1,7 +1,6 @@
 pipeline {
   environment {
     dockerImage = ''
-    HASH=$(echo $timestamp)
   }
   agent {
     kubernetes {
