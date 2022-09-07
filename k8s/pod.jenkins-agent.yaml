@@ -42,7 +42,6 @@ spec:
   - name: dind
     imagePullPolicy: Always
     image: docker:18.05-dind
-    command: ["dockerd", "--host", "tcp://127.0.0.1:2375"]
     securityContext:
       privileged: true
     volumeMounts:
