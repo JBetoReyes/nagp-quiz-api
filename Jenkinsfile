@@ -35,6 +35,7 @@ pipeline {
         }
         container('bitnami') {
             echo 'hello'
+            echo '$(pwd)'
             echo '$(kubectl get pods)'
             shell 'echo "helloooo"'
             shell """
