@@ -64,14 +64,20 @@ pipeline {
     stage('Docker Build') {
       steps {
         container('dind') {
-          // docker.withRegistry('https://registry.example.com', 'credentials-id') {
+          script {
+            dockerImage = docker.build("jbetoreyes/quiz-api:latest")
+          }
+        }
+      }
+    }
+    stage('Docker Push') {
+      steps {
+        container('dind') {
+          docker.withRegistry('docker-hub-integration') {
               script {
-                dockerImage = docker.build("jbetoreyes/quiz-api:latest")
+                dockerImage.push()
               }
-              /* Push the container to the custom Registry */
-              // customImage.push()
-          // }
-          // sh 'docker build -t jbetoreyes/quiz-api:latest .'
+          }
         }
       }
     }
