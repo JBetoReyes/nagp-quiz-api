@@ -1,0 +1,35 @@
+apiVersion: v1
+  kind: Pod
+  metadata:
+    namespace: jenkins
+    labels:
+      some-label: some-label-value
+  spec:
+    serviceAccountName: jenkins-agent
+    containers:
+    - name: node
+      image: node:18-alpine
+      command:
+      - cat
+      tty: true
+    - name: bitnami
+      image: bitnami/kubectl
+      imagePullPolicy: Always
+      command:
+      - cat
+      tty: true
+      securityContext:                                                                                                         
+        runAsUser: 1000
+    - name: dind
+      imagePullPolicy: Always
+      image: docker:dind
+      command: ["dockerd", "--host", "tcp://127.0.0.1:2375"]
+      securityContext:
+        privileged: true
+      volumeMounts:
+      - name: dockersock
+        mountPath: /var/run/docker.sock
+  volumes:
+    - name: dockersock
+      hostPath:
+        path: /var/run/docker.sock
