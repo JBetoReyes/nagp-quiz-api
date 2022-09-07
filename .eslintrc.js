@@ -6,7 +6,7 @@ module.exports = {
     jest: true,
   },
   ignorePatterns: ['dist/*.js', 'jest.config.js'],
-  extends: 'airbnb-base',
+  extends: ["eslint:recommended", "prettier"],
   overrides: [{
     files: ['src/**/*.js'],
   }],
