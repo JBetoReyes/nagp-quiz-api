@@ -61,7 +61,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         container('dind') {
-          sh 'docker ps'
+          sh 'docker build -t jbetoreyes/quiz-api:latest .'
         }
       }
     }
