@@ -16,8 +16,8 @@ pipeline {
             command:
             - cat
             tty: true
-          - name: bitnami
-            image: bitnami/kubectl
+          - name: k8s
+            image: alpine/k8s
             command:
             - cat
             tty: true
@@ -30,7 +30,7 @@ pipeline {
         container('maven') {
           sh 'mvn -version'
         }
-        container('bitnami') {
+        container('k8s') {
             sh 'echo "testing"'
             // sh 'kubectl config set-context prod'
             // sh 'kubectl get pods'
