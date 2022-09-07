@@ -1,15 +1,15 @@
-import express from 'express';
-import cors from 'cors';
+import express from 'express'
+import cors from 'cors'
 
 const server = (routers) => {
-  const app = express();
+    const app = express()
 
-  app.use(cors());
+    app.use(cors())
 
-  routers.forEach(({ name, router }) => {
-    app.use(`/${name}`, router);
-  });
-  return app;
-};
+    routers.forEach(({ name, router }) => {
+        app.use(`/${name}`, router)
+    })
+    return app
+}
 
-export default server;
+export default server
