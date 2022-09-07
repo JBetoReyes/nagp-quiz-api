@@ -73,10 +73,10 @@ pipeline {
     stage('Docker Push') {
       steps {
         container('dind') {
-          docker.withRegistry('docker-hub-integration') {
-              script {
-                dockerImage.push()
-              }
+          script {
+            docker.withRegistry('docker-hub-integration') {
+              dockerImage.push()
+            }
           }
         }
       }
