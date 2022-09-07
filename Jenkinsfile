@@ -44,6 +44,13 @@ pipeline {
         }
       }
     }
+    stage('Install') {
+      steps {
+        container('node') {
+          sh 'npm install'
+        }
+      }
+    }
     stage('Test') {
       steps {
         container('node') {
