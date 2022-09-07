@@ -54,7 +54,14 @@ pipeline {
     stage('Lint') {
       steps {
         container('node') {
-          sh 'npm run lint'
+          sh 'npm run lint:check'
+        }
+      }
+    }
+    stage('Prettier') {
+      steps {
+        container('node') {
+          sh 'npm run format:check'
         }
       }
     }
