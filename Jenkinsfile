@@ -21,6 +21,7 @@ pipeline {
             tty: true
           - name: bitnami
             image: bitnami/kubectl
+            imagePullPolicy: Always
             command:
             - cat
             tty: true
