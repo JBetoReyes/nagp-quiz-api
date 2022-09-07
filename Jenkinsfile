@@ -1,6 +1,7 @@
 pipeline {
   environment {
     dockerImage = ''
+    GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
   }
   agent {
     kubernetes {
@@ -12,6 +13,7 @@ pipeline {
       steps {
         container('node') {
           sh 'node --version'
+          sh 'echo "${GIT_COMMIT_HASH}"'
         }
         container('bitnami') {
             sh """
@@ -76,6 +78,7 @@ pipeline {
           script {
             docker.withRegistry('', 'docker-hub-integration') {
               dockerImage.push()
+              dockerImage.push("${GIT_COMMIT_HASH}")
             }
           }
         }
