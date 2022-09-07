@@ -77,5 +77,13 @@ pipeline {
         }
       }
     }
+    stage('Deployment') {
+      steps {
+        container('node') {
+          sh 'kubectl apply -f k8s/service.quiz-api.yaml'
+          sh 'kubectl apply -f k8s/deployment.quiz-api.yaml'
+        }
+      }
+    }
   }
 }
