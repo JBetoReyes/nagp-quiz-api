@@ -18,6 +18,9 @@ pipeline {
             tty: true
           - name: bitnami
             image: bitnami/kubectl
+            command:
+            - cat
+            tty: true
         '''
     }
   }
