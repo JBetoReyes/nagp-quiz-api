@@ -16,12 +16,15 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const dbo = await getDbConnection()
-    const {id} = req.params
+    const { id } = req.params
     let questions
     try {
-        questions = await dbo.collection('questions').find({
-            _id: id
-        }).toArray()
+        questions = await dbo
+            .collection('questions')
+            .find({
+                _id: id,
+            })
+            .toArray()
     } catch (err) {
         console.log(err)
     }
