@@ -24,6 +24,19 @@ pipeline {
             tty: true
           securityContext:                                                                                                         
             runAsUser: 1000
+          - name: dind
+            imagePullPolicy: Always
+            image: docker:dind
+            command: ["dockerd", "--host", "tcp://127.0.0.1:2375"]
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - name: dockersock
+              mountPath: /var/run/docker.sock
+        volumes:
+          - name: dockersock
+            hostPath:
+              path: /var/run/docker.sock
         '''
     }
   }
@@ -78,6 +91,13 @@ pipeline {
       steps {
         container('node') {
           sh 'npm run build'
+        }
+      }
+    }
+    stage('Docker Build') {
+      steps {
+        container('dind') {
+          sh 'docker ps'
         }
       }
     }
