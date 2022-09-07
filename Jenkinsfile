@@ -44,5 +44,12 @@ pipeline {
         }
       }
     }
+    stage('Test') {
+      steps {
+        container('node') {
+          sh 'npm run test'
+        }
+      }
+    }
   }
 }
