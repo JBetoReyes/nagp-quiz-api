@@ -45,7 +45,7 @@ module.exports = {
     // coverageThreshold: undefined,
     coverageThreshold: {
         global: {
-            statements: 50,
+            statements: 20,
         },
     },
     // A path to a custom dependency extractor

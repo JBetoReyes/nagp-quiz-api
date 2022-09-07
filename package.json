@@ -15,7 +15,11 @@
         "prepare": "husky install"
     },
     "lint-staged": {
-        "*.{js}": "eslint --fix"
+        "*.js": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ]
     },
     "author": "",
     "license": "ISC",

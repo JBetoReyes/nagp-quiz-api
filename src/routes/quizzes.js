@@ -31,6 +31,25 @@ router.get('/:id', async (req, res) => {
     res.json(questions)
 })
 
+router.post('/', async (req, res) => {
+    const dbo = await getDbConnection()
+    const { questions } = req.body
+    let insertedQuestions
+    try {
+        insertedQuestions = await dbo
+            .collection('questions')
+            .insertMay(questions)
+    } catch (err) {
+        console.log(err)
+    }
+    let ids = insertedQuestions.insertedIds
+    console.log(`${insertedQuestions.insertedCount} documents were inserted.`)
+    for (let id of Object.values(ids)) {
+        console.log(`Inserted a document with id ${id}`)
+    }
+    res.status(200).json({ message: 'questions inserted successfully' })
+})
+
 const quizRouter = {
     name: 'quizzes',
     router,
