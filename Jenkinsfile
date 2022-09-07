@@ -48,6 +48,11 @@ pipeline {
       steps {
         container('node') {
           sh 'npm run test'
+          publishHTML(target: [
+            reportDir: 'coverage/lcov-report',
+            reportFiles: 'index.html',
+            reportName: 'api coverage'
+          ])
         }
       }
     }
