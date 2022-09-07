@@ -26,7 +26,7 @@ pipeline {
             - cat
             tty: true
           securityContext:                                                                                                         
-          runAsUser: 1000
+            runAsUser: 1000
         '''
     }
   }
