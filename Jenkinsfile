@@ -1,7 +1,4 @@
 pipeline {
-  environment {
-    JENKINS_JAVA_OPTIONS = 'org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true'
-  }
   agent {
     kubernetes {
       yaml '''
@@ -51,6 +48,18 @@ pipeline {
         }
       }
     }
+    stage('Test') {
+      steps {
+        container('node') {
+          sh 'npm run test'
+          publishHTML(target: [
+            reportDir: 'coverage/lcov-report',
+            reportFiles: 'index.html',
+            reportName: 'api coverage'
+          ])
+        }
+      }
+    }
     stage('Lint') {
       steps {
         container('node') {
@@ -65,15 +74,10 @@ pipeline {
         }
       }
     }
-    stage('Test') {
+    stage('Build') {
       steps {
         container('node') {
-          sh 'npm run test'
-          publishHTML(target: [
-            reportDir: 'coverage/lcov-report',
-            reportFiles: 'index.html',
-            reportName: 'api coverage'
-          ])
+          sh 'npm run build'
         }
       }
     }
