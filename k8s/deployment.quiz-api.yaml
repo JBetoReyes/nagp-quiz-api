@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: quiz-api
-        image: jbetoreyes/quiz-api:0.0.2
+        image: jbetoreyes/quiz-api:latest
         imagePullPolicy: Always
         env:
         - name: APP_PORT

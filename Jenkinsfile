@@ -9,20 +9,6 @@ pipeline {
     }
   }
   stages {
-    stage('Run node') {
-      steps {
-        container('node') {
-          sh 'node --version'
-          sh 'echo "${GIT_COMMIT_HASH}"'
-        }
-        container('bitnami') {
-            sh """
-            kubectl config set-context prod
-            kubectl get pods
-            """
-        }
-      }
-    }
     stage('Install') {
       steps {
         container('node') {
