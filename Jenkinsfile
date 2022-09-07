@@ -37,8 +37,8 @@ pipeline {
             echo 'hello'
             echo '$(pwd)'
             echo '$(kubectl get pods)'
-            shell 'echo "helloooo"'
-            shell """
+            sh ('echo "helloooo"')
+            sh """
             kubectl config set-context prod
             kubectl get pods
             """
