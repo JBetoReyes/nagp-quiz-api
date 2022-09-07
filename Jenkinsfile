@@ -14,8 +14,8 @@ pipeline {
         spec:
           serviceAccountName: jenkins-agent
           containers:
-          - name: maven
-            image: maven:alpine
+          - name: node
+            image: node:18-alpine
             command:
             - cat
             tty: true
@@ -31,22 +31,16 @@ pipeline {
     }
   }
   stages {
-    stage('Run maven') {
+    stage('Run node') {
       steps {
-        container('maven') {
-          sh 'mvn -version'
+        container('node') {
+          sh 'node -version'
         }
         container('bitnami') {
-            echo 'hello'
-            echo '$(pwd)'
-            echo '$(kubectl get pods)'
-            sh ('echo "helloooo"')
             sh """
             kubectl config set-context prod
             kubectl get pods
             """
-            // sh 'kubectl config set-context prod'
-            // sh 'kubectl get pods'
         }
       }
     }
