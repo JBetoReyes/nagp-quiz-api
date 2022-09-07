@@ -6,6 +6,7 @@ const { APP_PORT: appPort } = process.env;
 const app = server(routes);
 
 const expressServer = app.listen(appPort, () => {
+  // eslint-disable-next-line no-console
   console.log(`App listening at ${appPort}`);
 });
 
