@@ -1,12 +1,21 @@
-import server from './server';
-import quizzesRouter from './routes/quizzes';
+import server from "./server";
+import routes from "./routes";
 
-const {
-    APP_PORT
-} = process.env;
+const { APP_PORT: appPort } = process.env;
 
-const routers = [
-    quizzesRouter
-]
+const app = server(routes);
 
-server(APP_PORT, routers);
+const expressServer = app.listen(appPort, () => {
+  console.log(`App listening at ${appPort}`);
+});
+
+process.on("SIGTERM", () => {
+  expressServer.close(function () {
+    process.exit(0);
+  });
+});
+process.on("SIGINT", () => {
+  expressServer.close(function () {
+    process.exit(0);
+  });
+});

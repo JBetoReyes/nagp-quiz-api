@@ -1,5 +1,4 @@
 const {MongoClient} = require('mongodb');
-// const {MongoClient} = mongodb;
 
 const {
     DB_HOST,
