@@ -31,7 +31,7 @@ pipeline {
           sh 'mvn -version'
         }
         container('bitnami') {
-            sh 'echo "testing"'
+            echo 'hello'
             // sh 'kubectl config set-context prod'
             // sh 'kubectl get pods'
         }
