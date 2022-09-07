@@ -1,4 +1,7 @@
 pipeline {
+  environment {
+    JENKINS_JAVA_OPTIONS = 'org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true'
+  }
   agent {
     kubernetes {
       yaml '''
