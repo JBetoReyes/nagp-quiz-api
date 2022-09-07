@@ -34,7 +34,7 @@ pipeline {
     stage('Run node') {
       steps {
         container('node') {
-          sh 'node -version'
+          sh 'node --version'
         }
         container('bitnami') {
             sh """
