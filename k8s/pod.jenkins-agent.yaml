@@ -38,7 +38,7 @@ spec:
     - cat
     tty: true
     securityContext:
-      runAsUser: root
+      runAsUser: 'root'
   - name: dind
     imagePullPolicy: Always
     image: docker:18.05-dind
