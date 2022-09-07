@@ -59,6 +59,11 @@ pipeline {
       }
     }
     stage('Docker Push') {
+      when {
+        expression {
+          return (env.BRANCH_NAME=="master")
+        }
+      }
       steps {
         container('dind') {
           script {
@@ -71,6 +76,11 @@ pipeline {
       }
     }
     stage('Deployment') {
+      when {
+        expression {
+          return (env.BRANCH_NAME=="master")
+        }
+      }
       steps {
         container('bitnami') {
           sh 'kubectl apply -f k8s/service.quiz-api.yaml'
