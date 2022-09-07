@@ -5,6 +5,7 @@ pipeline {
         apiVersion: v1
         kind: Pod
         metadata:
+          namespace: jenkins
           labels:
             some-label: some-label-value
         spec:
@@ -30,9 +31,8 @@ pipeline {
           sh 'mvn -version'
         }
         container('bitnami') {
-            withKubeConfig([credentialsId:"jenkins_kubernetes_token", serverUrl:"https://EEBB500747E532DD038C25E99E8C0BC1.sk1.us-west-1.eks.amazonaws.com", namespace: "jenkins"]) {
-                sh 'kubectl get pods'
-            }
+            sh 'kubectl config set-context prod'
+            sh 'kubectl get pods'
         }
       }
     }
